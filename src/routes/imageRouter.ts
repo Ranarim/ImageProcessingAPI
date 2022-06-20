@@ -3,6 +3,6 @@ import imageCtrl from '../controllers/imageCtrl'
 
 const router = Router()
 
-router.get('/:path', imageCtrl.getFile)
+router.get('/:path/:width/:height', imageCtrl.getAndChangeImage)
 
 export default router

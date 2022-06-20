@@ -1,24 +1,28 @@
 /* THIS COMPONENT INTERACTS WITH THE DATA BASE */
-/* const fs = require("fs");
+import { Request, Response } from 'express'
+import { resize } from '../utils/resize'
 
-export class imageService {
-	getAll() {
-		const response = {
-			id: '62a260d8e6d50110aa4fff2c',
-			isActive: false,
-			avatar: 'http://placehold.it/32x32',
-			username: 'Sampson_Christian',
-			gender: 'male',
-			email: 'sampsonchristian@opticom.com',
-			tags: ['nulla', 'excepteur', 'reprehenderit', 'cupidatat', 'cupidatat', 'in', 'sint'],
+export class imageServices {
+	getAndChangeImage(req: Request, res: Response) {
+		// Extract the query-parameter
+		const widthString: string = req.params.width
+		const heightString: string = req.params.height
+
+		// Parse to integer if possible
+		let width = 10
+		let height = 10
+
+		if (widthString) {
+			width = parseInt(widthString)
 		}
-		return response
-	}
-	getOne() {
-		fs.readFile("../../database/1.jpg","utf-8", function (error,data) {
-			return data
+		if (heightString) {
+			height = parseInt(heightString)
 		}
+
+		const filePath = './src/database/'.concat(req.params.path)
+		// Get the resized image
+		resize(filePath, width, height).pipe(res)
 	}
 }
-export default new imageService()
- */
+
+export default new imageServices()
