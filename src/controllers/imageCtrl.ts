@@ -7,7 +7,7 @@ class imageCtrl {
 	getAndChangeImage(req: Request, res: Response) {
 		//controller function to invoke getOneFile Service
 		try {
-			imageService.getAndChangeImage(req, res)
+			imageService.changeAndDisplayImage(req, res)
 		} catch (err) {
 			console.log(err, 'Controller not working')
 		}
