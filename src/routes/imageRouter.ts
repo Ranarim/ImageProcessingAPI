@@ -3,6 +3,9 @@ import imageCtrl from '../controllers/imageCtrl'
 
 const router = Router()
 
-router.get('/:imageName', imageCtrl.getAndChangeImage)
+/* router.delete('/', imageCtrl.deleteAllImages)
+router.delete('/:imageName', imageCtrl.deleteImage)*/
+router.get('/', imageCtrl.changeAndDisplayAllImages)
+router.get('/:imageName', imageCtrl.changeAndDisplayImage)
 
 export default router
