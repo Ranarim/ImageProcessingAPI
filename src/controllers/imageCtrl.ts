@@ -38,7 +38,7 @@ class imageCtrl {
 		try {
 			const keyProperties: Keys = {
 				// define the original image path
-				path: './src/database',
+				path: './src/database/',
 				// set the width default and height to 300, if the query exists, than change it
 				width: req.query.width ? parseInt(req.query.width.toString()) : 300,
 				height: req.query.height ? parseInt(req.query.height.toString()) : 300,
@@ -47,12 +47,18 @@ class imageCtrl {
 			const { width, height, path } = keyProperties
 
 			const filenames = fs.readdirSync(path)
-			const readStream = fs.createReadStream(path)
 
-			filenames.map(() => {
+			const images = filenames.map((file) => {
+				const imagePath = path + '' + file
+				const readStream = fs.createReadStream(imagePath)
 				const resizedImage = imageServices.changeAndDisplayImage(width, height)
-				readStream.pipe(resizedImage).pipe(res)
+				console.log(imagePath)
+				readStream.pipe(resizedImage)
 			})
+
+			console.log(images)
+			res.send(images)
+
 		} catch (err) {
 			console.log(err, 'Controller function changeAndDisplayImage failed')
 		}
