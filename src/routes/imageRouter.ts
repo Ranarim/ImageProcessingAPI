@@ -1,9 +1,8 @@
 import { Router } from 'express'
-import imageCtrl from '../controllers/imageCtrl'
+import { getImage } from '../controllers/imageCtrl'
 
 const router = Router()
 
-router.get('/', imageCtrl.changeAndDisplayAllImages)
-router.get('/:imageName', imageCtrl.changeAndDisplayImage)
+router.get('/:imageName', getImage)
 
 export default router
