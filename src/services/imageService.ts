@@ -1,9 +1,16 @@
+import sharp, { OutputInfo } from 'sharp'
 /* THIS COMPONENT INTERACTS WITH THE DATA BASE */
 
-export const editImage = (imageName: string, width: number, height: number) => {
+export const editImage = async (
+	newPath: string,
+	imageName: string,
+	width: number,
+	height: number,
+): Promise<OutputInfo | undefined> => {
 	//check if the query params have valid input
 	try {
-		console.log(imageName, width, height)
+		const resizedImage = await sharp(`./src/database/${imageName}.jpg`).resize(width, height).toFile(newPath)
+		return resizedImage
 	} catch {
 		throw new Error('Image processing failed')
 	}

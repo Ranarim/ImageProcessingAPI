@@ -7,8 +7,6 @@ import path from 'path'
 
 const imageExists = (imageName: string, width: number, height: number): boolean => {
 	const pathExist = path.join(__dirname, `../database/thumb/${imageName}_${width}x${height}.jpg`)
-	console.log(fs.existsSync(pathExist))
-	console.log(pathExist)
 	return fs.existsSync(pathExist)
 }
 
@@ -19,6 +17,7 @@ export const getImage = async (req: Request, res: Response): Promise<void> => {
 	const height = req.query.width ? parseInt(req.query.width.toString()) : 300
 
 	const originalPath = path.join(__dirname, `../database/${imageName}.jpg`)
+	const newPath = path.join(__dirname, `../database/thumb/${imageName}_${width}x${height}.jpg`)
 
 	//check if the original photo exists
 	if (!fs.existsSync(originalPath)) {
@@ -29,12 +28,12 @@ export const getImage = async (req: Request, res: Response): Promise<void> => {
 	//check if the thumb photo already exists
 	else if (!imageExists(imageName, width, height)) {
 		console.log('thumb photo does not exist, so creating new one')
-		editImage(imageName, width, height)
+		await editImage(newPath, imageName, width, height)
+		res.status(200).sendFile(newPath)
 	}
-	// sending back the existing photo
+	// send back the existing photo
 	else {
 		console.log('sending back the existing thumb photo')
-		const existingImage = path.join(__dirname, `../database/thumb/${imageName}.jpg`)
-		res.sendFile(existingImage)
+		res.status(200).sendFile(newPath)
 	}
 }
