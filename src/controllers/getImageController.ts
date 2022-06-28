@@ -20,7 +20,7 @@ export const getImage = async (req: Request, res: Response): Promise<void> => {
 	if (!fs.existsSync(originalPath)) {
 		const notFound = path.join(__dirname, '../database/image-not-found.jpg')
 		console.log('original photo does not exist')
-		res.status(400).sendFile(notFound)
+		res.status(404).sendFile(notFound)
 	}
 	//check if the thumb photo already exists
 	else if (!imageExists(imageName, width, height)) {
@@ -31,6 +31,6 @@ export const getImage = async (req: Request, res: Response): Promise<void> => {
 	// send back the existing photo
 	else {
 		console.log('sending back the existing thumb photo')
-		res.status(200).sendFile(newPath)
+		res.status(202).sendFile(newPath)
 	}
 }
