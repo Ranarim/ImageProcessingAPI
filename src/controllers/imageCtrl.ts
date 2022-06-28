@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-/* import { editImage } from '../services/imageService'
- */ import * as fs from 'fs'
+import { editImage } from '../services/imageService'
+import * as fs from 'fs'
 import path from 'path'
 
 /* THIS CONTROLLER WILL PARSE THE REQUEST AND CALL THE RIGHT SERVICE ACTION*/
@@ -29,6 +29,7 @@ export const getImage = async (req: Request, res: Response): Promise<void> => {
 	//check if the thumb photo already exists
 	else if (!imageExists(imageName, width, height)) {
 		console.log('thumb photo does not exist, so creating new one')
+		editImage(imageName, width, height)
 	}
 	// sending back the existing photo
 	else {
