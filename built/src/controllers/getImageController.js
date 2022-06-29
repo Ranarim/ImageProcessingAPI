@@ -81,7 +81,7 @@ var getImage = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
                 if (!!fs.existsSync(originalPath)) return [3 /*break*/, 1];
                 notFound = path_1.default.join(__dirname, '../database/image-not-found.jpg');
                 console.log('original photo does not exist');
-                res.status(400).sendFile(notFound);
+                res.status(404).sendFile(notFound);
                 return [3 /*break*/, 4];
             case 1:
                 if (!!(0, imageExists_1.imageExists)(imageName, width, height)) return [3 /*break*/, 3];
@@ -93,7 +93,7 @@ var getImage = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
                 return [3 /*break*/, 4];
             case 3:
                 console.log('sending back the existing thumb photo');
-                res.status(200).sendFile(newPath);
+                res.status(202).sendFile(newPath);
                 _a.label = 4;
             case 4: return [2 /*return*/];
         }
