@@ -8,7 +8,7 @@ export const app: Application = express()
 app.use('/api/images', router)
 
 /* LISTENING */
-const PORT = 4040
+const PORT = 8080
 app.listen(PORT, (): void => console.log(`running on port ${PORT}`))
 
 export default app

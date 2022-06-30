@@ -17,10 +17,12 @@ const deleteFiles = () => {
 		}
 	})
 }
+
 beforeAll(() => {
 	deleteFiles()
 })
 afterAll(() => {
+	// Closing the DB connection allows Jest to exit successfully.
 	deleteFiles()
 })
 
