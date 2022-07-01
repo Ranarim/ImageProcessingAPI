@@ -5,10 +5,10 @@ import router from './routes/imageRouter'
 export const app: Application = express()
 
 /* ROUTES */
-app.use('/api/images', router)
+app.use('/', router)
 
 /* LISTENING */
-const PORT = 8080
+const PORT = 3001
 app.listen(PORT, (): void => console.log(`running on port ${PORT}`))
 
 export default app

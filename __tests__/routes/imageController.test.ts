@@ -27,6 +27,14 @@ afterAll(() => {
 })
 
 describe('Testing Controller and fs functionality', () => {
+	test('check if the status is 203 if there are no params', async (): Promise<void> => {
+		const data = await request(app).get('/')
+		expect(data.status).toBe(203)
+	})
+	test('check if the status is 401 if the input is not valid', async (): Promise<void> => {
+		const data = await request(app).get('/asdfasdfasdf')
+		expect(data.status).toBe(401)
+	})
 	test('check if the status is 400 if image doesnt exist', async (): Promise<void> => {
 		const data = await request(app).get('/api/images/krxln')
 		expect(data.status).toBe(404)

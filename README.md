@@ -23,7 +23,7 @@ npm install
 
 ````
 4. Go to the Browser and get the images
-The URL has to have following format: http://localhost:8080/api/images/imagename?&width=number&height=number
+The URL has to have following format: http://localhost:3001/api/images/imagename?&width=number&height=number
 Imagenames: "klettern","kraxeln","wandern" und "bergsteigen"
 Examples:
 - http://localhost:8080/api/images/klettern?width=222&height=222

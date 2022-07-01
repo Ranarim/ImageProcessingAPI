@@ -16,8 +16,15 @@ export const getImage = async (req: Request, res: Response): Promise<void> => {
 	const originalPath = path.join(__dirname, `../database/${imageName}.jpg`)
 	const newPath = path.join(__dirname, `../database/thumb/${imageName}_${width}x${height}.jpg`)
 
+	//check if the query input is negative or 0
+	if (width <= 0 || height <= 0 || !imageName) {
+		console.log('Setting width or height to 0 or negative is not able in this two dimensional world')
+		const message = 'You need to set the width and height to a value higher than 0 and type in a valid filename'
+		res.status(401).send(message)
+	}
+
 	//check if the original photo exists
-	if (!fs.existsSync(originalPath)) {
+	else if (!fs.existsSync(originalPath)) {
 		const notFound = path.join(__dirname, '../database/image-not-found.jpg')
 		console.log('original photo does not exist')
 		res.status(404).sendFile(notFound)
