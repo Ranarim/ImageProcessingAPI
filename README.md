@@ -26,10 +26,11 @@ npm install
 The URL has to have following format: http://localhost:3001/api/images/imagename?&width=number&height=number
 Imagenames: "klettern","kraxeln","wandern" und "bergsteigen"
 Examples:
-- http://localhost:8080/api/images/klettern?width=222&height=222
-- http://localhost:8080/api/images/bergsteigen?width=444&height=444
-- http://localhost:8080/api/images/brgstgn?width=444&height=444
-# How to test the App
+- http://localhost:3001
+- http://localhost:3001/asdfasdfasdfad
+- http://localhost:3001/api/images/klettern?width=222&height=222
+- http://localhost:3001/api/images/bergsteigen?width=444&height=444
+- http://localhost:3001/api/images/brgstgn?width=444&height=444
 
 5. Testing:
 There are three tests in the set. To run them write
