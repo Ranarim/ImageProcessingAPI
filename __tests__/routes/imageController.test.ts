@@ -35,7 +35,11 @@ describe('Testing Controller and fs functionality', () => {
 		const data = await request(app).get('/asdfasdfasdf')
 		expect(data.status).toBe(401)
 	})
-	test('check if the status is 400 if image doesnt exist', async (): Promise<void> => {
+	test('check if the status is 401 when the query input is negative, 0 or not a number', async (): Promise<void> => {
+		const data = await request(app).get('/api/images/klettern?width=asdasd&height=-100')
+		expect(data.status).toBe(401)
+	})
+	test('check if the status is 404 if image doesnt exist', async (): Promise<void> => {
 		const data = await request(app).get('/api/images/krxln')
 		expect(data.status).toBe(404)
 	})

@@ -5,6 +5,7 @@ export const editImage = async (newPath: string, imageName: string, width: numbe
 	//check if the query params have valid input
 	try {
 		const resizedImage = await sharp(`./src/database/${imageName}.jpg`).resize(width, height).toFile(newPath)
+		console.log(typeof resizedImage)
 		return resizedImage
 	} catch {
 		throw new Error('Image processing failed')

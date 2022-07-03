@@ -7,19 +7,18 @@ import path from 'path'
 /* THIS CONTROLLER WILL PARSE THE REQUEST AND CALL THE RIGHT SERVICE ACTION*/
 
 export const getImage = async (req: Request, res: Response): Promise<void> => {
-	//defining the query params
 	const imageName = req.params.imageName
 	const width = req.query.width ? parseInt(req.query.width.toString()) : 300
-	const height = req.query.width ? parseInt(req.query.width.toString()) : 300
+	const height = req.query.height ? parseInt(req.query.height.toString()) : 300
 
 	//defining the paths
 	const originalPath = path.join(__dirname, `../database/${imageName}.jpg`)
 	const newPath = path.join(__dirname, `../database/thumb/${imageName}_${width}x${height}.jpg`)
 
 	//check if the query input is negative or 0
-	if (width <= 0 || height <= 0 || !imageName) {
-		console.log('Setting width or height to 0 or negative is not able in this two dimensional world')
-		const message = 'You need to set the width and height to a value higher than 0 and type in a valid filename'
+	if (isNaN(height) || isNaN(width) || width <= 0 || height <= 0) {
+		console.log('You need to set the width and height to a positive number')
+		const message = 'You need to set the width and height to positive number'
 		res.status(401).send(message)
 	}
 
