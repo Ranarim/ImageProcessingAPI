@@ -4,8 +4,7 @@ import fs from 'fs'
 import path from 'path'
 
 const deleteFiles = () => {
-	const directory =
-		'/Users/johannesmaier/Desktop/Code/Masterschool Projects/ImageProcessingAPI/node-app/src/database/thumb'
+	const directory = path.join(__dirname, `../../src/database/thumb`)
 
 	fs.readdir(directory, (err, files) => {
 		if (err) throw err
