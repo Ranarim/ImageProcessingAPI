@@ -38,7 +38,7 @@ There are three tests in the set. To run them write
 npm test
 ````
 
-6. Compile to JavaScript
+6. Compile to Javascript
 
 ```bash
 npm run build
